@@ -1,0 +1,28 @@
+{
+  "name": "mws-restaurant-stage-1",
+  "version": "1.0.0",
+  "description": "Google Udacity Nanodegree project 1 of 3",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonyalvarez/mws-restaurant-stage-1.git"
+  },
+  "keywords": [
+    "mapbox",
+    "leafjs",
+    "udacity",
+    "google"
+  ],
+  "author": "Anthony E. Alvarez <acunet3278@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonyalvarez/mws-restaurant-stage-1/issues"
+  },
+  "homepage": "https://github.com/anthonyalvarez/mws-restaurant-stage-1#readme",
+  "devDependencies": {
+    "eslint": "^5.3.0"
+  }
+}
