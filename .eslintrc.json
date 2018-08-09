@@ -131,6 +131,7 @@
         "no-confusing-arrow": "error",
         "no-continue": "error",
         "no-div-regex": "error",
+        "no-dupe-keys":"error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",
         "no-empty-function": "error",
