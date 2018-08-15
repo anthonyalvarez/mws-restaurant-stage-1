@@ -7,6 +7,7 @@ var markers = [];
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  * @param {object} event - A DOM mutation event type to listen for
+ * @returns none
  */
 document.addEventListener('DOMContentLoaded', (event) => {
     initMap(); // added
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 /**
  * Fetch all neighborhoods and set their HTML.
+ * @param none
+ * @returns none
  */
 fetchNeighborhoods = () => {
     DBHelper.fetchNeighborhoods((error, neighborhoods) => {
@@ -63,7 +66,7 @@ fetchCuisines = () => {
 /**
  * Set cuisines HTML.
  * @param {object} cuisines
- * @returns {object} option
+ * @returns none - Updated DOM element
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
     const select = document.getElementById('cuisines-select');
@@ -78,6 +81,8 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 
 /**
  * Initialize leaflet map, called from HTML.
+ * @param none
+ * @returns {object} self.newMap - Updates global variable
  */
 initMap = () => {
     self.newMap = L.map('map', {
@@ -111,6 +116,8 @@ initMap = () => {
 
 /**
  * Update page and map for current restaurants.
+ * @param none
+ * @returns none
  */
 updateRestaurants = () => {
     const cSelect = document.getElementById('cuisines-select');
@@ -135,6 +142,7 @@ updateRestaurants = () => {
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  * @param {object} restaurants - from data file
+ * @returns {object} self.restaurants - Updates global variable
  */
 resetRestaurants = (restaurants) => {
     // Remove all restaurants
@@ -153,7 +161,7 @@ resetRestaurants = (restaurants) => {
 /**
  * Create all restaurants HTML and add them to the webpage.
  * @param {object} restaurants - from data file
- * @returns {object} ul
+ * @returns {object} none - updates DOM element
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
     const ul = document.getElementById('restaurants-list');
@@ -166,11 +174,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  * @param {object} restaurant - from data file
- * @returns {object} image
- * @returns {object} name
- * @returns {object} neighborhood
- * @returns {object} address
- * @returns {object} more
+ * @returns none - Updates DOM elements
  */
 createRestaurantHTML = (restaurant) => {
     const li = document.createElement('li');
@@ -194,6 +198,9 @@ createRestaurantHTML = (restaurant) => {
     li.append(address);
 
     const more = document.createElement('a');
+    more.setAttribute('role', 'button');
+    const ariaLabelText = 'View Details for the ' + restaurant.name + ' restaurant';
+    more.setAttribute('aria-label', ariaLabelText);
     more.innerHTML = 'View Details';
     more.href = DBHelper.urlForRestaurant(restaurant);
     li.append(more);
@@ -204,7 +211,7 @@ createRestaurantHTML = (restaurant) => {
 /**
  * Add markers for current restaurants to the map.
  * @param {object} restaurants - from data file
- * @returns {object} marker
+ * @returns {object} self.markers - Updates global variable
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
     restaurants.forEach(restaurant => {

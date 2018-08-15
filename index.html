@@ -13,33 +13,33 @@
 
 <body>
     <!-- Beginning header -->
-    <header>
+    <header role="banner" >
         <!-- Beginning nav -->
         <nav>
-            <h1><a href="/">Restaurant Reviews</a></h1>
+            <h1 aria-label="Return to Home Page"><a href="/">Restaurant Reviews</a></h1>
         </nav>
         <!-- End nav -->
     </header>
     <!-- End header -->
 
     <!-- Beginning main -->
-    <main id="maincontent">
+    <main role="main" aria-label="Interactive Restaurant Map of New York" id="maincontent">
         <!-- Beginning map -->
         <section id="map-container">
-            <div id="map"></div>
+            <div role="presentation" id="map"></div>
         </section>
         <!-- End map -->
-        <section>
-            <div class="filter-options">
+        <section role="region" aria-label="Filter results" >
+            <div role="search" aria-label="Filter Options" class="filter-options">
                 <h2>Filter Results</h2>
-                <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+                <select id="neighborhoods-select" aria-label="Select Neighborhoods"   name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
-                <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+                <select id="cuisines-select" aria-label="Select Cuisine"  name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
             </div>
-            <ul id="restaurants-list"></ul>
+            <ul id="restaurants-list" role="list" aria-label="Restaurant Details" ></ul>
         </section>
     </main>
     <!-- End main -->
@@ -54,8 +54,8 @@
     <!-- End scripts -->
 
     <!-- Beginning footer -->
-    <footer id="footer">
-        Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    <footer role="contentinfo" id="footer">
+        Copyright (c) 2017 <a href="/" role="navigation" aria-label="Return to Home Page"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
     </footer>
     <!-- End footer -->
 
