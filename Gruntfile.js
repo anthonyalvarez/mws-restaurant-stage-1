@@ -14,14 +14,14 @@ module.exports = function(grunt) {
                 options: {
                     /* engine: 'im', */
                     sizes: [{
-                        name: 'small',
+                        name: 'sm',
                         width: '270',
-                        suffix: '_270',
+                        // suffix: '_270 1X',
                         quality: 20
                     }, {
-                        name: 'medium',
+                        name: 'med',
                         width: '540',
-                        suffix: '_540',
+                        // suffix: '_540 2X',
                         quality: 40
                     }]
                 },
@@ -34,23 +34,23 @@ module.exports = function(grunt) {
                     expand: true,
                     src: ['*.{gif,jpg,png}'],
                     cwd: 'img/',
-                    dest: 'images/'
+                    dest: 'img/'
                 }]
             }
         },
 
         /* Clear out the images directory if it exists */
-        clean: {
+        /* clean: {
             dev: {
-                src: ['images'],
+                src: ['img/dist/'],
             },
-        },
+        }, */
 
         /* Generate the images directory if it is missing */
         mkdir: {
             dev: {
                 options: {
-                    create: ['images']
+                    create: ['img/dist/']
                 },
             },
         },
@@ -61,16 +61,18 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: 'img/*.{gif,jpg,png}',
-                    dest: 'images/'
+                    dest: 'img/dist/'
                 }]
             },
         },
     });
 
     grunt.loadNpmTasks('grunt-responsive-images');
-    grunt.loadNpmTasks('grunt-contrib-clean');
+    // grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
-    grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+    // grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+    grunt.registerTask('default', ['mkdir', 'responsive_images']);
+
 
 };
