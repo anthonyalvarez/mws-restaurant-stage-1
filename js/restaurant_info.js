@@ -96,7 +96,17 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
     const image = document.getElementById('restaurant-img');
     image.className = 'restaurant-img';
-    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    const FILENAME = DBHelper.imageUrlForRestaurant(restaurant);
+    let fileName = FILENAME.slice (0, -4);
+    let fileSmall = fileName + '-sm.jpg 270w';
+    let fileMedium = fileName + '-med.jpg 540w, ';
+    let fileLarge = FILENAME;
+    let sourceSet = fileLarge + ' 800w, ' + fileMedium + fileSmall;
+    console.log('srcset: ' + sourceSet);
+    
+    image.src = fileName + '-sm.jpg';
+    image.setAttribute("srcset", sourceSet);
     image.alt = restaurant.name;
 
     const cuisine = document.getElementById('restaurant-cuisine');
