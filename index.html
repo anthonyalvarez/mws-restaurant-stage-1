@@ -51,6 +51,20 @@
     <script src="js/dbhelper.js"></script>
     <script src="js/main.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
+
+    <script>
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW Registered!!', reg))
+        .catch(err => console.log('SW Boo!', err));
+
+    /* if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('./serviceworker.js').then(function(registration) {
+        console.log('Service Worker registered with scope: ', registration.scope);
+      }).catch(function(err) {
+        console.log('Service worker registration failed: ', err);
+      });
+    } */
+    </script>
     <!-- End scripts -->
 
     <!-- Beginning footer -->
