@@ -40,14 +40,6 @@ const URLS_TO_CACHE = [
   '/img/10-sm.jpg'
 ];
 
-/* self.addEventListener('install', function(event){
-  event.waitUntil (
-    caches.open (CACHE_NAME).then(function(cache) {
-      return cache.addAll(URLS_TO_CACHE);
-      })
-  );
-}); */
-
 /**
  * @description Installs service worker for the first time, give it a name and populates it with cache date. 
  * @param {object} event 
