@@ -23,11 +23,12 @@
   },
   "homepage": "https://github.com/anthonyalvarez/mws-restaurant-stage-1#readme",
   "devDependencies": {
-    "eslint": "^5.3.0",
+    "eslint": "^5.4.0",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-mkdir": "^1.0.0",
-    "grunt-responsive-images": "^1.10.1"
+    "grunt-responsive-images": "^1.10.1",
+    "prettier": "1.14.2"
   }
 }
