@@ -47,7 +47,19 @@ const URLS_TO_CACHE = [
  * @returns none - Installed Service worker
  */
 
-self.addEventListener('install', event => {
+self.addEventListener('install', function(evt) {
+  console.log('[SERVICE-WORKER] Install ');
+  evt.waitUntil(precache());
+});
+
+function precache() {
+  return caches.open(CACHE_NAME).then(function (cache) {
+    console.log('[SERVICE-WORKER] PreCache');
+    return cache.addAll(URLS_TO_CACHE);
+  });
+}
+
+/* self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(URLS_TO_CACHE);
@@ -58,7 +70,7 @@ self.addEventListener('install', event => {
       })
   );
 });
-
+ */
 /**
  * @description Service worker is activating at this point and deletes old caches.
  * @param  {object} e
@@ -72,8 +84,8 @@ self.addEventListener('activate', e => {
         if (key !== CACHE_NAME) return caches.delete(key);
       }));
     }));
-  console.log('SW Activated');
-  return self.clients.claim();
+  console.log('[SERVICE-WORKER] Activate');
+  // return self.clients.claim();
 });
 
 /**
@@ -91,7 +103,32 @@ self.addEventListener('activate', e => {
 //   );
 // });
 
-self.addEventListener('fetch', function(e) {
+self.addEventListener('fetch', function(evt) {
+  console.log('[SERVICE-WORKER] fetch', evt.request);
+ evt.respondWith(fromCache(evt.request));
+  evt.waitUntil(update(evt.request));
+});
+
+function fromCache(request) {
+  return caches.open(CACHE_NAME).then(function (cache) {
+    return cache.match(request).then(function (matching) {
+      console.log('[SERVICE-WORKER] fromCache', request);
+      return matching || Promise.reject('no-match');
+    });
+  });
+}
+
+function update(request) {
+  return caches.open(CACHE_NAME).then(function (cache) {
+    return fetch(request).then(function (response) {
+      console.log('[SERVICE-WORKER] Update cache', response);
+      return cache.put(request, response);
+    });
+  });
+}
+
+
+/* self.addEventListener('fetch', function(e) {
 	console.log('[ServiceWorker] Fetch', e.request.url);
 
 	// e.respondWidth Responds to the fetch event
@@ -143,4 +180,4 @@ self.addEventListener('fetch', function(e) {
 
 			}) // end caches.match(e.request)
 	); // end e.respondWith
-});
+}); */
