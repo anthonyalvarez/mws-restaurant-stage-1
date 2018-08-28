@@ -27,7 +27,7 @@
   <main role="main" aria-label="Interactive Restaurant Map of New York" id="maincontent">
     <!-- Beginning map -->
     <section id="map-container">
-      <div role="presentation" id="map"></div>
+      <div role="application" id="map" aria-label="Restaurant location Map"></div>
     </section>
     <!-- End map -->
     <section role="region" aria-label="Filter results">
@@ -35,11 +35,12 @@
         <div class="filter-title">
           <h2>Filter Results</h2>
         </div>
-        <div class="filter-hoods"> <select id="neighborhoods-select" aria-label="Select Neighborhoods" name="neighborhoods"
-            onchange="updateRestaurants()">
+        <div class="filter-hoods" aria-labelledby="neighborhoods-select"><select id="neighborhoods-select" aria-label="Select Neighborhoods"
+            name="neighborhoods" onchange="updateRestaurants()">
             <option value="all">All Neighborhoods</option>
           </select></div>
-        <div class="filter-foods"> <select id="cuisines-select" aria-label="Select Cuisine" name="cuisines" onchange="updateRestaurants()">
+        <div class="filter-foods" aria-labelledby="cuisines-select"> <select id="cuisines-select" aria-label="Select Cuisine"
+            name="cuisines" onchange="updateRestaurants()">
             <option value="all">All Cuisines</option>
           </select></div>
       </div>
